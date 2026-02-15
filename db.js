@@ -1,19 +1,19 @@
-import mysql from "mysql2";
-import dotenv from "dotenv";
+  import mysql from "mysql2";
+  import dotenv from "dotenv";
 
-dotenv.config();
+  dotenv.config();
 
-const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306, // <-- add this line
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+  const db = mysql.createPool({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306, // <-- add this line
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+  });
 
-console.log("MySQL Pool Created ✅");
+  console.log("MySQL Pool Created ✅");
 
-export default db.promise();
+  export default db.promise();
