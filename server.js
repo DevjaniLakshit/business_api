@@ -21,6 +21,17 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes); // ✅ Now it works
 
+
+app.get("/api/items", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT * FROM products"); // Make sure table exists
+    res.json(rows);
+  } catch (err) {
+    console.error("Route Error:", err); // Logs on Render
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
