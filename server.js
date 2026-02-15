@@ -22,13 +22,13 @@ app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes); // ✅ Now it works
 
 
-app.get("/api/items", async (req, res) => {
+app.get("/api/test-db", async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM products"); // Make sure table exists
-    res.json(rows);
+    const [rows] = await db.query("SELECT 1 + 1 AS result");
+    res.json({ message: "DB connected ✅", result: rows[0].result });
   } catch (err) {
-    console.error("Route Error:", err); // Logs on Render
-    res.status(500).json({ message: "Server Error" });
+    console.error("DB Test Error:", err);
+    res.status(500).json({ message: "Database connection failed ❌" });
   }
 });
 
