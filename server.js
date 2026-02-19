@@ -5,6 +5,7 @@ import db from "./db.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import dashboardRoutes from "./routes/dashboard.js"; // ✅ ADD THIS
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes); // ✅ Now it works
-
+app.use("/api/orders", orderRoutes);
 
 app.get("/api/test-db", async (req, res) => {
   try {
