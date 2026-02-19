@@ -7,7 +7,7 @@ export const createOrder = async (req, res) => {
   try {
     // Insert order
     const [orderResult] = await db.query(
-      "INSERT INTO orders (name, phone, address, payment_method, total_amount) VALUES (?, ?, ?, ?, ?)",
+      "INSERT INTO orders (customer_name, phone, address, payment_method, total_amount) VALUES (?, ?, ?, ?, ?)",
       [customer_name, phone, address, paymentMethod, totalAmount]
     );
 
