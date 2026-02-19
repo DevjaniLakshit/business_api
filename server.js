@@ -22,6 +22,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/dashboard", dashboardRoutes); // ✅ Now it works
 app.use("/api/orders", orderRoutes);
+app.use("/uploads", express.static("uploads"));
 
 app.get("/api/test-db", async (req, res) => {
   try {

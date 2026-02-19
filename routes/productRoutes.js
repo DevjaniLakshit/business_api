@@ -4,12 +4,14 @@ import {
   getProducts,
   deleteProduct,
 } from "../controllers/productController.js";
-import { protect } from "../middleware/authMiddleware.js";
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
+// ✅ use multer here
+router.post("/", upload.single("image"), createProduct);
+
 router.get("/", getProducts);
-router.post("/", protect, createProduct);
-router.delete("/:id", protect, deleteProduct);
+router.delete("/:id", deleteProduct);
 
 export default router;
