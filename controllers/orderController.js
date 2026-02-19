@@ -20,21 +20,21 @@ export const createOrder = async (req, res) => {
 
     const [orderResult] = await db.query(
       "INSERT INTO orders (customer_name, phone, address, payment_method, total_amount) VALUES (?, ?, ?, ?, ?)",
-      [customer_name, phone, address, payment_method, total_amount],
+      [customer_name, phone, address, payment_method, total_amount]
     );
 
     const orderId = orderResult.insertId;
 
     for (let item of items) {
       let cleanPrice = parseFloat(
-        item.price?.toString().replace(/[^0-9.]/g, ""),
+        item.price?.toString().replace(/[^0-9.]/g, "")
       );
 
       if (isNaN(cleanPrice)) cleanPrice = 0; // ✅ prevent crash
 
       await db.query(
         "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)",
-        [orderId, item.id || null, item.quantity || 1, cleanPrice],
+        [orderId, item.id || null, item.quantity || 1, cleanPrice]
       );
     }
 
