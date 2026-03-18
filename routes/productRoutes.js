@@ -8,7 +8,6 @@ import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
-// ✅ use multer here
 router.post("/", upload.single("image"), createProduct);
 
 router.get("/", getProducts);
